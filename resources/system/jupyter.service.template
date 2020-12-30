@@ -1,0 +1,16 @@
+[Unit]
+Description=Jupyter Notebook
+After=syslog.target network.target
+
+[Service]
+Type=simple
+PIDFile=/run/jupyter.pid
+ExecStart=/bin/bash -c ". /usr/local/bin/start-jupyter.sh"
+User=${LOCAL_USER}
+Group=${LOCAL_USER}
+WorkingDirectory=/home/${LOCAL_USER}
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
