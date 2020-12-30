@@ -3,7 +3,7 @@
 # Setup
 
 ```
-git clone https://github.com/dvillaj/NoSQL-Deployer.git ~/deploy
+git clone https://github.com/dvillaj/NoSQL-Deployer.git /opt/deploy
 
-~/deploy/install.sh
+/opt/deploy/install.sh
 ```
