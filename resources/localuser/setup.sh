@@ -15,7 +15,7 @@ while [ ! -f ~/notebooks/.install -a  "$1" != "-f" ]; do
     esac
 done
 
-curl -s https://raw.githubusercontent.com/dvillaj/files-repository/master/NoSQL-box/setup.sh | bash
+curl -s https://raw.githubusercontent.com/dvillaj/NoSQL-Deployer/master/scripts/setup.sh | bash
 
 if [ $? -eq 0 ]; then
    rm -f ~/notebooks/.install;

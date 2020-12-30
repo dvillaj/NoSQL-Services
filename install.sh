@@ -1,11 +1,11 @@
 #!/bin/bash
 
-ACTUAL_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-LOCAL_USER="learner"
+export ACTUAL_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+export LOCAL_USER="learner"
 
 
 function addLocalUser {
-    echo "Adding learning user ..."
+    echo "Adding local user ..."
 
     useradd -m -s /bin/bash  $LOCAL_USER
     echo $LOCAL_USER:$LOCAL_USER | chpasswd
@@ -73,7 +73,7 @@ function installDocker {
 function installPythonPackages {
     echo "Instaling python packages from requeriments.txt ..."
 
-    su $LOCAL_USER -c "source ~/venv/bin/activate;  pip install -r resources/system/requeriments.txt"
+    su $LOCAL_USER -c "source ~/venv/bin/activate;  pip install -r $ACTUAL_DIR/resources/system/requeriments.txt"
 }
 
 
@@ -114,9 +114,10 @@ function serviceJupyterLab {
     echo "Config Jupyter Lab ..."
 
     mkdir /etc/jupyter
-    cp resources/system/start-jupyter.sh /usr/local/bin
+    envsubst < file > file
+    envsubst < $ACTUAL_DIR/resources/system/start-jupyter.sh.template  > /usr/local/bin/start-jupyter.sh
     chmod a+x /usr/local/bin/start-jupyter.sh
-    cp resources/system/jupyter.service /etc/systemd/system/
+    envsubst < $ACTUAL_DIR/resources/system/jupyter.service.template  > /etc/systemd/system/jupyter.service
 
     systemctl enable jupyter.service
     systemctl daemon-reload
@@ -144,11 +145,21 @@ function setupFirewall {
     echo "y" | sudo ufw enable
 }
 
+function createSwapMemory {
+    echo "Creating Swap Memory ..."
+
+    fallocate -l 2G /swapfile
+    chmod 600 /swapfile
+    mkswap /swapfile
+    swapon /swapfile
+}
+
 echo "Setting up NoSQL box ..."
 
 
 checkVersion
 setupFirewall
+createSwapMemory
 addLocalUser
 installSystemPackages
 installNodeJs
