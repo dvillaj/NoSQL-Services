@@ -12,8 +12,6 @@ function addLocalUser {
     usermod -aG sudo $LOCAL_USER
 
     rsync --archive --chown=$LOCAL_USER:$LOCAL_USER $ACTUAL_DIR/resources/localuser/ /home/$LOCAL_USER
-    chmod +x /home/$LOCAL_USER/*.sh
-
     rsync --archive --chown=$LOCAL_USER:$LOCAL_USER ~/.ssh /home/learnel
 
     mkdir -p /opt/compose
