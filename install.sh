@@ -112,7 +112,6 @@ function serviceJupyterLab {
     echo "Config Jupyter Lab ..."
 
     mkdir /etc/jupyter
-    envsubst < file > file
     envsubst < $ACTUAL_DIR/resources/system/start-jupyter.sh.template  > /usr/local/bin/start-jupyter.sh
     chmod a+x /usr/local/bin/start-jupyter.sh
     envsubst < $ACTUAL_DIR/resources/system/jupyter.service.template  > /etc/systemd/system/jupyter.service
@@ -164,5 +163,5 @@ installNodeJs
 installPython3.6
 installDocker
 installPythonPackages
-installJupyterLabExtensions
+# installJupyterLabExtensions
 serviceJupyterLab
