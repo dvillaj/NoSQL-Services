@@ -60,16 +60,6 @@ ssh root@$MACHINE_IP /opt/deploy/securebox.sh
 After executing this script the SSH Port (22) is the only port allowed.
 
 
-## Install the Services
-
-
-Execute the following script:
-
-```
-ssh learner@$MACHINE_IP ~/setup.sh
-```
-
-
 ## Access to the services
 
 Open a terminal in your local machine and execute the following script:
@@ -82,7 +72,6 @@ ssh -N -L 8001:127.0.0.1:8001 \
              -L 5050:127.0.0.1:5050 \
              -L 8098:127.0.0.1:8098 \
              -L 8082:127.0.0.1:8082 \
-             -L 2222:127.0.0.1:2222 \
              -L 7687:127.0.0.1:7687 \
             learner@$MACHINE_IP
 ```
