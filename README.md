@@ -24,7 +24,7 @@ The box's requirements are:
 
 There are several possibilities to accomplish this:
 
- - Local Machine with Vagrant & VirtualBox:  https://github.com/dvillaj/NoSQL-base
+ - Local Machine with Vagrant & VirtualBox:  https://github.com/dvillaj/NoSQL-box
  - Cloud: DigitalOcean, Azure, AWS, etc ...
 
 
@@ -38,7 +38,7 @@ MACHINE_IP=<IP>
 ssh root@$MACHINE_IP
 ```
 
-## Box's Setup 
+## Setup  the Box
 
 Execute the following script to setup the box:
 
@@ -60,7 +60,7 @@ ssh root@$MACHINE_IP /opt/deploy/securebox.sh
 After executing this script the SSH Port (22) is the only port allowed.
 
 
-## Installing the Services
+## Install the Services
 
 
 Execute the following script:
