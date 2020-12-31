@@ -1,3 +1,6 @@
+
+# NoSQL alias
+
 alias postgres="docker-compose -f /opt/compose/compose-postgres/docker-compose.yml"
 alias riak="docker-compose -f /opt/compose/compose-riak/docker-compose.yml"
 alias riak-admin="docker exec -it compose-riak_coordinator_1 riak-admin"
