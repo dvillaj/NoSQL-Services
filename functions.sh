@@ -52,7 +52,7 @@ function addLocalUser {
 }
 
 function installSystemPackages {
-    echo "Instaling system packages from packages.conf  ..."
+    echo "Installing system packages from packages.conf  ..."
 
     apt -qq update
     apt install -y $(grep -vE "^\s*#" $ACTUAL_DIR/resources/system/packages.conf  | tr "\n" " ")
@@ -100,7 +100,7 @@ function installDocker {
 
 
 function installPythonPackages {
-    echo "Instaling python packages from requeriments.txt ..."
+    echo "Installing python packages from requeriments.txt ..."
 
     su $LOCAL_USER -c "source ~/venv/bin/activate;  pip install -r $ACTUAL_DIR/resources/system/requeriments.txt"
 }
