@@ -7,4 +7,3 @@ source $ACTUAL_DIR/functions.sh
 echo "Securing NoSQL box ..."
 
 setupFirewall
-secureOpenSsh

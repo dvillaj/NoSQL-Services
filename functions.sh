@@ -37,13 +37,15 @@ function addLocalUser {
     echo "Adding local user ..."
 
     useradd -m -s /bin/bash  $LOCAL_USER
-    echo $LOCAL_USER:$LOCAL_USER | chpasswd
-    usermod -aG sudo $LOCAL_USER
+    echo $LOCAL_PASSWORD:$LOCAL_USER | chpasswd
 
     rsync --archive --chown=$LOCAL_USER:$LOCAL_USER $ACTUAL_DIR/resources/localuser/home/ /home/$LOCAL_USER
     rsync --archive --chown=$LOCAL_USER:$LOCAL_USER ~/.ssh /home/$LOCAL_USER
 
     cat $ACTUAL_DIR/resources/localuser/profile/bashrc >> /home/$LOCAL_USER/.bashrc
+   
+    usermod -aG sudo $LOCAL_USER
+    envsubst < $ACTUAL_DIR/resources/system/sudo.template  > /etc/sudoers.d/local-user
 
     mkdir -p /opt/compose
     chown $LOCAL_USER:$LOCAL_USER /opt/compose
@@ -156,15 +158,15 @@ function setupFirewall {
     echo "Setting up firewall ..."
 
     ufw allow OpenSSH
-    echo "y" | sudo ufw enable
+    echo "y" | ufw enable
 }
 
 function secureOpenSsh {
     echo "Securing OpenSsh ..."
 
-    sudo sed -i 's/^ChallengeResponseAuthentication yes/ChallengeResponseAuthentication no/' /etc/ssh/sshd_config
-    sudo sed -i 's/^PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
-    sudo sed -i 's/^UsePAM yes/UsePAM no/' /etc/ssh/sshd_config
+    sed -i 's/^ChallengeResponseAuthentication yes/ChallengeResponseAuthentication no/' /etc/ssh/sshd_config
+    sed -i 's/^PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+    sed -i 's/^UsePAM yes/UsePAM no/' /etc/ssh/sshd_config
 
     /etc/init.d/ssh reload
 }
