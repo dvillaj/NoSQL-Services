@@ -37,7 +37,7 @@ function addLocalUser {
     echo "Adding local user ..."
 
     useradd -m -s /bin/bash  $LOCAL_USER
-    echo $LOCAL_PASSWORD:$LOCAL_USER | chpasswd
+    echo $LOCAL_USER:$LOCAL_PASSWORD | chpasswd
 
     rsync --archive --chown=$LOCAL_USER:$LOCAL_USER $ACTUAL_DIR/resources/localuser/home/ /home/$LOCAL_USER
     rsync --archive --chown=$LOCAL_USER:$LOCAL_USER ~/.ssh /home/$LOCAL_USER
