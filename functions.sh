@@ -70,6 +70,7 @@ function installNodeJs {
 }
 
 # Python 3.6 is needed for riak python library
+# TypeError: namedtuple() got an unexpected keyword argument 'verbose'
 function installPython3.6 {
     echo "Instaling python 3.6 ..."
 
