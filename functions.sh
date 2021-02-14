@@ -85,17 +85,11 @@ function installPython3.6 {
 
 function installDocker {
     echo "Installing docker ..."
-
-    
+   
     apt install -y apt-transport-https ca-certificates curl software-properties-common
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
     add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
-    apt install -qq -y docker-ce
-
-    echo "Installing docker compose ..."
-
-    curl -sL https://github.com/docker/compose/releases/download/1.27.4/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
-    chmod +x /usr/local/bin/docker-compose
+    apt install -qq -y docker-ce docker-compose
 
     usermod -aG docker $LOCAL_USER
 }
@@ -104,7 +98,7 @@ function installDocker {
 function installPythonPackages {
     echo "Installing python packages from requeriments.txt ..."
 
-    su $LOCAL_USER -c "source ~/venv/bin/activate;  pip install -r $ACTUAL_DIR/resources/system/requeriments.txt"
+    su $LOCAL_USER -c "source ~/venv/bin/activate;  pip install --no-cache-dir -r $ACTUAL_DIR/resources/system/requeriments.txt"
 }
 
 
@@ -113,32 +107,31 @@ function installJupyterLabExtensions_LocalUser {
 
     source ~/venv/bin/activate
 
-    # export jupyter notebooks with images embebed
-    # Version 0.5.1 
-    pip install jupyter_contrib_nbextensions
+    #git install jupyter_contrib_nbextensions
     jupyter contrib nbextension install --user
 
-    pip install jupyter_nbextensions_configurator
+    #git install jupyter_nbextensions_configurator
     jupyter nbextensions_configurator enable --user
 
+    # Variable Inspector Plugin
+    #git install lckr-jupyterlab-variableinspector
 
-    echo "Git Client"
-    pip install jupyterlab-git
+    # Draw.io plugin
+    #git install jupyterlab-drawio
+
+    # Git Plugin
+    #pip install --upgrade jupyterlab jupyterlab-git==0.30.0b1
+
+    #jupyter server extension list
+    #jupyter labextension list
     jupyter lab build
 
-    echo "Table of Contents"
-    jupyter labextension install @jupyterlab/toc
-
-    echo "Drawio"
-    jupyter labextension install jupyterlab-drawio
-
-    echo "Variable Inspector"
-    jupyter labextension install @lckr/jupyterlab_variableinspector
 }
 
 function installJupyterLabExtensions {
     export -f installJupyterLabExtensions_LocalUser
     su $LOCAL_USER -c "bash -c installJupyterLabExtensions_LocalUser"
+
 }
 
 function serviceJupyterLab {

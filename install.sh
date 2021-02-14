@@ -16,5 +16,5 @@ installNodeJs
 installPython3.6
 installDocker
 installPythonPackages
-#installJupyterLabExtensions
+installJupyterLabExtensions
 serviceJupyterLab
