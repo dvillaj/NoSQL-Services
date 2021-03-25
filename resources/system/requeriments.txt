@@ -7,7 +7,7 @@ matplotlib
 
 # Postgres
 psycopg2-binary==2.8.6
-sqlalchemy
+sqlalchemy==1.3.2
 ipython-sql
 prettytable==0.7.2 # requeriment for ipython-sql
 
@@ -45,7 +45,7 @@ openpyxl
 # JupyterLab 
 
 # https://github.com/jupyterlab/jupyterlab-git/releases
-jupyterlab-git==0.30.0b1
+jupyterlab-git==0.30.0b2
 
 jupyterlab-drawio
 lckr-jupyterlab-variableinspector
