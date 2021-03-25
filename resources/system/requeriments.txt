@@ -1,14 +1,15 @@
 # jupyterlab
-jupyterlab>=2.2,<3"
+jupyterlab
 
 # Pandas
 pandas
 matplotlib
 
 # Postgres
-psycopg2==2.8.6
-sqlalchemy
+psycopg2-binary==2.8.6
+sqlalchemy==1.3.2
 ipython-sql
+prettytable==0.7.2 # requeriment for ipython-sql
 
 # riak
 riak==2.7.0
@@ -40,3 +41,13 @@ pprintpp
 # Read Excel from Pandas
 xlrd
 openpyxl
+
+# JupyterLab 
+
+# https://github.com/jupyterlab/jupyterlab-git/releases
+jupyterlab-git==0.30.0b2
+
+jupyterlab-drawio
+lckr-jupyterlab-variableinspector
+jupyter_nbextensions_configurator
+jupyter_contrib_nbextensions
