@@ -108,25 +108,9 @@ function installJupyterLabExtensions_LocalUser {
 
     source ~/venv/bin/activate
 
-    #git install jupyter_contrib_nbextensions
     jupyter contrib nbextension install --user
-
-    #git install jupyter_nbextensions_configurator
     jupyter nbextensions_configurator enable --user
-
-    # Variable Inspector Plugin
-    #git install lckr-jupyterlab-variableinspector
-
-    # Draw.io plugin
-    #git install jupyterlab-drawio
-
-    # Git Plugin
-    #pip install --upgrade jupyterlab jupyterlab-git==0.30.0b1
-
-    #jupyter server extension list
-    #jupyter labextension list
     jupyter lab build
-
 }
 
 function installJupyterLabExtensions {
