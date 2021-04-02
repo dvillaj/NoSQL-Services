@@ -18,11 +18,11 @@ riak==2.7.0
 pymongo==3.11.2
 
 # Neo4j
-py2neo==git+https://github.com/technige/py2neo.git@v3
+# py2neo v3
+git+https://github.com/technige/py2neo.git@v3
 ipython-cypher
 networkx==2.5
 decorator==4.4.2
-python-igraph==0.8.3
 
 # cassandra
 cassandra-driver==3.24.0
@@ -51,6 +51,3 @@ jupyterlab-drawio
 lckr-jupyterlab-variableinspector
 jupyter_nbextensions_configurator
 jupyter_contrib_nbextensions
-
-# Google Download
-gdown
