@@ -21,7 +21,7 @@ pymongo==3.11.2
 py2neo==3.1.2
 ipython-cypher
 networkx==2.5
-jgraph==0.2.1
+decorator==4.4.2
 python-igraph==0.8.3
 
 # cassandra
