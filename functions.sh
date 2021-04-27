@@ -80,7 +80,6 @@ function installPython3.6 {
     apt -qq update
     apt install -y python3.6 python3.6-dev
 
-    su - $LOCAL_USER -c "virtualenv -p /usr/bin/python3.6 ~/venv"
 }
 
 
@@ -97,6 +96,9 @@ function installDocker {
 
 
 function installPythonPackages {
+    echo "Creating Virtual Environment ..."
+    su - $LOCAL_USER -c "virtualenv -p /usr/bin/python3.6 ~/venv"
+
     echo "Installing python packages from requeriments.txt ..."
 
     su $LOCAL_USER -c "source ~/venv/bin/activate;  pip install --no-cache-dir -r $ACTUAL_DIR/resources/system/requeriments.txt"
