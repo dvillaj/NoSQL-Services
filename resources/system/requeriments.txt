@@ -45,12 +45,8 @@ openpyxl
 # JupyterLab 
 
 # https://github.com/jupyterlab/jupyterlab-git/releases
-jupyterlab-git==0.30.0b3
+jupyterlab-git==0.30.0
 
 jupyterlab-drawio
-lckr-jupyterlab-variableinspector
 jupyter_nbextensions_configurator
 jupyter_contrib_nbextensions
-
-# Google Download
-gdown
