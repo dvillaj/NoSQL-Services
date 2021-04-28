@@ -15,17 +15,26 @@ Most of the services are powered by Docker and Docker Compose.
 
 ## Requirements
 
-A Ubuntu 20.04 box has to be previously created to execute this script with at least 2 Gb of Memory
+A Ubuntu box has to be previously created to execute this script.
 
 The box's requirements are:
 
- - 2 Gb of Memory
- - Access to the machine through a local ssh key
+ - Ubuntu 20.04
+ - At least 2 Gb of Memory 
+ - Access to the machine through a local ssh key 
 
 There are several possibilities to accomplish this:
 
  - Local Machine with Vagrant & VirtualBox:  https://github.com/dvillaj/NoSQL-box
- - Cloud: DigitalOcean, Azure, AWS, etc ...
+ - Cloud Provided: DigitalOcean, Azure, AWS, etc ... 
+
+The following video it is an example of how to deploy this repo in DigitalOcean cloud provider:
+
+https://youtu.be/obbbQvBMTsM
+
+The only requeriment is to have a SSH key available in the local machine:
+
+https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-2
 
 
 ## Access to the Box
