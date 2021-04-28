@@ -15,26 +15,32 @@ Most of the services are powered by Docker and Docker Compose.
 
 ## Requirements
 
-A Ubuntu box has to be previously created to execute this script.
+A Ubuntu box has to be previously created you can execute the set up procedure.
 
-The box's requirements are:
+The Ubuntu box's requirements are:
 
- - Ubuntu 20.04
- - At least 2 Gb of Memory 
- - Access to the machine through a local ssh key 
+ - 20.04 Ubuntu Server with at least 2 Gb of Memory 
+ - Remote access to the machine through SSH keys
+ - RSA SSH key available in your local machine
 
-There are several possibilities to accomplish this:
+There are two possibilities to accomplish this:
 
- - Local Machine with Vagrant & VirtualBox:  https://github.com/dvillaj/NoSQL-box
- - Cloud Provided: DigitalOcean, Azure, AWS, etc ... 
+ - A box deployed in your local machine with Vagrant & VirtualBox:  https://github.com/dvillaj/NoSQL-box
+ - A box deployed with a Cloud Provider like DigitalOcean, Azure, AWS, etc ... 
 
-The following video it is an example of how to deploy this repo in DigitalOcean cloud provider:
+SSH Key:
 
-https://youtu.be/obbbQvBMTsM
-
-The only requeriment is to have a SSH key available in the local machine:
+To create a SSH Key in your local machine of the following link:
 
 https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-2
+
+NOTE: Steps 1 and 2 only
+
+## Example
+
+This following video is an example of how to create a Ubuntu box in DigitalOcean cloud provider and setup the remote machine to access all the NoSql services
+
+https://youtu.be/obbbQvBMTsM
 
 
 ## Access to the Box
@@ -47,7 +53,7 @@ MACHINE_IP=<IP>
 ssh root@$MACHINE_IP
 ```
 
-## Setup  the Box
+## Setup the Box
 
 Execute the following script to setup the box:
 
