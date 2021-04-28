@@ -95,13 +95,19 @@ function installDocker {
 }
 
 
-function installPythonPackages {
+function installPythonPackages_LocalUser {
     echo "Creating Virtual Environment ..."
-    su - $LOCAL_USER -c "virtualenv -p /usr/bin/python3.6 ~/venv"
+    virtualenv -p /usr/bin/python3.6 ~/venv
+    source ~/venv/bin/activate
 
     echo "Installing python packages from requeriments.txt ..."
+    pip install -U pip setuptools
+    pip install --no-cache-dir -r $ACTUAL_DIR/resources/system/requeriments.txt
+}
 
-    su $LOCAL_USER -c "source ~/venv/bin/activate;  pip install --no-cache-dir -r $ACTUAL_DIR/resources/system/requeriments.txt"
+function installPythonPackages {
+    export -f installPythonPackages_LocalUser
+    su $LOCAL_USER -c "bash -c installPythonPackages_LocalUser"
 }
 
 
