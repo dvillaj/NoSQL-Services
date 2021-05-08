@@ -11,6 +11,7 @@ echo "Setting up NoSQL box ..."
 checkVersion
 checkAuthorizedKeys
 createSwapMemory
+setupRootUser
 addLocalUser
 installSystemPackages
 installNodeJs

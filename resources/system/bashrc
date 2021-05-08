@@ -1,0 +1,3 @@
+# Root User Configuration
+
+export TERM=vt100
