@@ -33,6 +33,13 @@ function createSwapMemory {
     swapon /swapfile
 }
 
+function setupRootUser {
+    echo "Setup Root user ..."
+
+    cat $ACTUAL_DIR/resources/system/bashrc >> /root/.bashrc
+}
+
+
 function addLocalUser {
     echo "Adding local user ..."
 
