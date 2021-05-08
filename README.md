@@ -91,6 +91,30 @@ ssh -N -L 8001:127.0.0.1:8001 \
             learner@$MACHINE_IP
 ```
 
+## TroubleShotting
+
+
+- Check the jupyterlab service 
+
+```
+sudo systemctl status jupyter
+```
+
+- Check de Jypyer logs 
+
+
+```
+sudo journalctl -f -u jupyter
+
+```
+
+- Restart the machine
+
+```
+sudo restart
+```
+
+
 # Services
 
 ## Dependencies 
@@ -108,12 +132,6 @@ ssh -N -L 8001:127.0.0.1:8001 \
 
 http://localhost:8001
 
-
-### Jupyter Logging
-
-```
-sudo journalctl -f -u jupyter
-```
 
 
 ## Postgres
