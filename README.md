@@ -40,6 +40,12 @@ NOTE: Steps 1 and 2 only
 
 This following video is an example of how to create a Ubuntu box in DigitalOcean cloud provider and setup the remote machine to access all the NoSql services
 
+Before follow the example create a new ssh key, if needed:
+
+```
+ssh-keygen
+```
+
 https://youtu.be/obbbQvBMTsM
 
 
