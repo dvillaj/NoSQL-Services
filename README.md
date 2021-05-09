@@ -2,7 +2,7 @@
 
 This repo contains all the scripts needed to set up a Ubuntu box with several NoSQL Databases and a Jupyter environment to play with them
 
-## Installed Services
+## Services
 
 - Postgres
 - Riak
