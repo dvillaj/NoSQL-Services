@@ -2,7 +2,7 @@
 
 This repo contains all the scripts needed to set up a Ubuntu box with several NoSQL Databases and a Jupyter environment to play with them
 
-## Installed Services
+## Services
 
 - Postgres
 - Riak
@@ -39,6 +39,12 @@ NOTE: Steps 1 and 2 only
 ## Example
 
 This following video is an example of how to create a Ubuntu box in DigitalOcean cloud provider and setup the remote machine to access all the NoSql services
+
+Before follow the example create a new ssh key, if needed:
+
+```
+ssh-keygen
+```
 
 https://youtu.be/obbbQvBMTsM
 
