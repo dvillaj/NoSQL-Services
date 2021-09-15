@@ -21,5 +21,5 @@ if [ $? -eq 0 ]; then
    rm -f ~/notebooks/.install;
    echo "Done :-)"
 else
-   echo "Something goes wrong :-("
+   echo "Oops! something went wrong :-("
 fi
