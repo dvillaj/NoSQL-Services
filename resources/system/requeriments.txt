@@ -28,11 +28,11 @@ git+https://github.com/basho/riak-python-client.git
 pymongo==3.11.2
 
 # Neo4j
-# py2neo v3
-git+https://github.com/technige/py2neo.git@v3
+py2neo==2021.2.0
 ipython-cypher
 networkx==2.5
 decorator==4.4.2
+neo4jupyter
 
 # cassandra
 cassandra-driver==3.24.0
