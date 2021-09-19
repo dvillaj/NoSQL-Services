@@ -76,20 +76,6 @@ function installNodeJs {
     rm ~/nodesource_setup.sh
 }
 
-# Python 3.6 is needed for riak python library
-# TypeError: namedtuple() got an unexpected keyword argument 'verbose'
-function installPython3.6 {
-    echo "Instaling python 3.6 ..."
-
-    # http://lavatechtechnology.com/post/install-python-35-36-and-37-on-ubuntu-2004/
-
-    add-apt-repository -y ppa:deadsnakes/ppa
-    apt -qq update
-    apt install -y python3.6 python3.6-dev
-
-}
-
-
 function installDocker {
     echo "Installing docker ..."
    
@@ -104,12 +90,12 @@ function installDocker {
 
 function installPythonPackages_LocalUser {
     echo "Creating Virtual Environment ..."
-    virtualenv -p /usr/bin/python3.6 ~/venv
+    virtualenv ~/venv
     source ~/venv/bin/activate
 
     echo "Installing python packages from requeriments.txt ..."
-    pip install -U pip setuptools
-    pip install --no-cache-dir -r $ACTUAL_DIR/resources/system/requeriments.txt
+    pip3 install -U pip setuptools
+    pip3 install --no-cache-dir -r $ACTUAL_DIR/resources/system/requeriments.txt
 }
 
 function installPythonPackages {

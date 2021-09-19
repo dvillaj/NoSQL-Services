@@ -1,6 +1,14 @@
 # jupyterlab
 jupyterlab
 
+# https://github.com/jupyterlab/jupyterlab-git/releases
+jupyterlab-git==0.32.4
+
+jupyterlab-drawio
+lckr-jupyterlab-variableinspector
+jupyter_nbextensions_configurator
+jupyter_contrib_nbextensions
+
 # Pandas
 pandas
 matplotlib
@@ -13,17 +21,18 @@ ipython-sql
 prettytable==0.7.2 # requeriment for ipython-sql
 
 # riak
-riak==2.7.0
+# riak==2.7.0
+git+https://github.com/basho/riak-python-client.git
 
 # MongoDB
 pymongo==3.11.2
 
 # Neo4j
-# py2neo v3
-git+https://github.com/technige/py2neo.git@v3
+py2neo==2021.2.0
 ipython-cypher
 networkx==2.5
 decorator==4.4.2
+neo4jupyter
 
 # cassandra
 cassandra-driver==3.24.0
@@ -42,13 +51,3 @@ pprintpp
 # Read Excel from Pandas
 xlrd
 openpyxl
-
-# JupyterLab 
-
-# https://github.com/jupyterlab/jupyterlab-git/releases
-jupyterlab-git==0.30.1
-
-jupyterlab-drawio
-lckr-jupyterlab-variableinspector
-jupyter_nbextensions_configurator
-jupyter_contrib_nbextensions
