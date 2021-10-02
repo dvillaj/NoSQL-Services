@@ -17,7 +17,7 @@ if [ -f ~/notebooks/.install ]; then
     docker pull dpage/pgadmin4:4.20
     docker pull dvillaj/riak
     docker pull cassandra:3.11
-    docker pull mongo:4.2.5
+    docker pull mongo:5.0.3
     docker pull neo4j:3.5.11
     docker pull huggingface/mongoku:1.3.0  
 fi
