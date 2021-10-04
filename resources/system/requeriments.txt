@@ -22,7 +22,7 @@ prettytable==0.7.2 # requeriment for ipython-sql
 
 # riak
 # riak==2.7.0
-git+https://github.com/basho/riak-python-client.git
+git+https://github.com/basho/riak-python-client.git@8abefafaea0486556b7e133c4f6ec0107b37245e
 
 # MongoDB
 pymongo==3.11.2
