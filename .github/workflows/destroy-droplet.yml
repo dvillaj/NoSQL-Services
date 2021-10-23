@@ -1,0 +1,22 @@
+name: Deploy to DigitalOcean
+
+on: 
+  workflow_dispatch
+
+env:
+  DROPLET_NAME: nosql
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
+      - name: Destroy JupyterLab Droplet
+        run: |
+          doctl compute droplet delete ${{ env.DROPLET_NAME }} --force
