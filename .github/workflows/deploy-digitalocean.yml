@@ -63,7 +63,7 @@ jobs:
         run: |
           sleep 15
 
-      - name: Deploy Docker
+      - name: Deploy NoSQL assets
         uses: appleboy/ssh-action@v0.1.2
         with:
           host: ${{ steps.create_droplet.outputs.public_ip }}
@@ -71,6 +71,9 @@ jobs:
           username: root
      
           script: |
-            git clone https://github.com/dvillaj/NoSQL-Services.git /opt/deploy && /opt/deploy/install.sh
-
+            git clone https://github.com/dvillaj/NoSQL-Services.git /opt/deploy
+            
+            /opt/deploy/install.sh
+            /opt/deploy/securebox.sh
+            
             curl https://www.duckdns.org/update/${{ env.DUCKDNS_DOMAIN }}/${{ secrets.DUCKDNS_TOKEN }}

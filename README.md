@@ -1,3 +1,5 @@
+[![Deploy to DigitalOcean](https://github.com/dvillaj/NoSQL-Services/actions/workflows/deploy-digitalocean.yml/badge.svg)](https://github.com/dvillaj/NoSQL-Services/actions/workflows/deploy-digitalocean.yml)
+
 # NoSQL-Services
 
 This repo contains all the scripts needed to set up a Ubuntu box with several NoSQL Databases and a Jupyter environment to play with them
@@ -30,7 +32,7 @@ There are two possibilities to accomplish this:
 
 SSH Key:
 
-To create a SSH Key in your local machine of the following link:
+To create a SSH Key in your local machine view the following link:
 
 https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-2
 
@@ -106,7 +108,7 @@ ssh -N -L 8001:127.0.0.1:8001 \
 sudo systemctl status jupyter
 ```
 
-- Check de Jypyer logs 
+- Check de Jupyter logs 
 
 
 ```
