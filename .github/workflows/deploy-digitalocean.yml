@@ -40,7 +40,7 @@ jobs:
         run: |
           doctl compute droplet delete ${{ env.DROPLET_NAME }} --force || true
 
-      - name: Create JupyterLab Droplet
+      - name: Create NoSQL Droplet
         id: create_droplet
         run: |
           DO_PUBLIC_IP=$(doctl compute droplet create ${{ env.DROPLET_NAME }} \
@@ -75,5 +75,5 @@ jobs:
             
             /opt/deploy/install.sh
             /opt/deploy/securebox.sh
-            
+
             curl https://www.duckdns.org/update/${{ env.DUCKDNS_DOMAIN }}/${{ secrets.DUCKDNS_TOKEN }}
