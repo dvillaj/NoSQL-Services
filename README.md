@@ -64,7 +64,7 @@ ssh root@$MACHINE_IP
 Execute the following script to setup the box:
 
 ```
-ssh root@$MACHINE_IP "git clone https://github.com/dvillaj/NoSQL-Deployer.git /opt/deploy && /opt/deploy/install.sh"
+ssh root@$MACHINE_IP "git clone https://github.com/dvillaj/NoSQL-Services.git /opt/deploy && /opt/deploy/install.sh"
 ```
 
 ## Secure the Box 
