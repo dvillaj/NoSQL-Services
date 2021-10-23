@@ -1,4 +1,4 @@
-name: Deploy to DigitalOcean
+name: Destroy DigitalOcean Infrastructure
 
 on: 
   workflow_dispatch

@@ -89,9 +89,9 @@ function installPythonPackages_LocalUser {
     virtualenv ~/venv
     source ~/venv/bin/activate
 
-    echo "Installing python packages from requeriments.txt ..."
+    echo "Installing python packages from requerements.txt ..."
     pip3 install -U pip setuptools
-    pip3 install --no-cache-dir -r $ACTUAL_DIR/resources/system/requeriments.txt
+    pip3 install --no-cache-dir -r $ACTUAL_DIR/resources/system/requerements.txt
 }
 
 function installPythonPackages {
