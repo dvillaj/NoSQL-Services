@@ -105,6 +105,7 @@ function installJupyterLabExtensions_LocalUser {
 
     source ~/venv/bin/activate
 
+    jupyter labextension install jupyterlab-spreadsheet
     jupyter contrib nbextension install --user
     jupyter nbextensions_configurator enable --user
     jupyter lab build
