@@ -117,6 +117,17 @@ function installJupyterLabExtensions {
 
 }
 
+function servicePortainer {
+    echo "Config Portainer ..."
+
+    docker pull portainer/portainer
+    cp $ACTUAL_DIR/resources/system/portainer.service /etc/systemd/system
+
+    systemctl enable portainer.service
+    systemctl daemon-reload
+    systemctl start portainer.service
+}
+
 function serviceJupyterLab {
     echo "Config Jupyter Lab ..."
 

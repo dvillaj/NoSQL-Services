@@ -26,4 +26,5 @@ installNodeJs
 installDocker
 installPythonPackages
 installJupyterLabExtensions
+servicePortainer
 serviceJupyterLab
