@@ -15,7 +15,7 @@ This repo contains all the scripts needed to set up a Ubuntu box with several No
 
 Most of the services are powered by Docker and Docker Compose.
 
-## Requirements
+## Deployment
 
 A Ubuntu box has to be previously created you can execute the set up procedure.
 
@@ -28,9 +28,10 @@ The Ubuntu box's requirements are:
 There are two possibilities to accomplish this:
 
  - A box deployed in your local machine with Vagrant & VirtualBox:  https://github.com/dvillaj/NoSQL-box
- - A box deployed with a Cloud Provider like DigitalOcean, Azure, AWS, etc ... 
+ - A box deployed with a Cloud Provider like [DigitalOcean](https://www.digitalocean.com), Azure, AWS, etc ... 
 
-SSH Key:
+
+### Create a SSH Key
 
 To create a SSH Key in your local machine view the following link:
 
@@ -38,7 +39,7 @@ https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-2
 
 NOTE: Steps 1 and 2 only
 
-## Example
+### Video Example
 
 This following video is an example of how to create a Ubuntu box in DigitalOcean cloud provider and setup the remote machine to access all the NoSql services
 
@@ -61,7 +62,7 @@ MACHINE_IP=<IP>
 ssh root@$MACHINE_IP
 ```
 
-## Setup the Box
+### Setup the Box
 
 Execute the following script to setup the box:
 
@@ -69,7 +70,7 @@ Execute the following script to setup the box:
 ssh root@$MACHINE_IP "git clone https://github.com/dvillaj/NoSQL-Services.git /opt/deploy && /opt/deploy/install.sh"
 ```
 
-## Secure the Box 
+### Secure the Box 
 
 This procedure is recommended if the box is deployed online and have to be executed after all the services has been installed.
 
@@ -83,7 +84,7 @@ ssh root@$MACHINE_IP /opt/deploy/securebox.sh
 After executing this script the SSH Port (22) is the only port allowed.
 
 
-## Access to the services
+## Access to the services from local
 
 Open a terminal in your local machine and execute the following script:
 
