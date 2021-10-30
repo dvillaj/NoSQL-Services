@@ -37,7 +37,6 @@ jobs:
           SSH_KEY=$(cat ~/digitalocean)
           SSH_KEY="${SSH_KEY//$'\n'/'%0A'}"
 
-          echo ::set-output name=key_id::$DO_SSH_KEY_ID
           echo ::set-output name=ssh_key_private::$SSH_KEY
 
       - name: Collect actual SSH Keys
@@ -45,8 +44,8 @@ jobs:
         run: |
           SSH_KEYS=$(doctl compute ssh-key list --no-header --format ID |  tr '\n' ',')          
           echo $SSH_KEYS
-          
-          echo ::set-output name=keys_id::"$SSH_KEYS${{ steps.create_ssh_id.outputs.key_id }}"
+
+          echo ::set-output name=keys_id::"${SSH_KEYS::-1}"
 
       - name: Create NoSQL Droplet
         id: create_droplet
