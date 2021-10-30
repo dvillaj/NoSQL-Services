@@ -22,6 +22,10 @@ jobs:
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
+      - name: Destroy JupyterLab Droplet
+        run: |
+          doctl compute droplet delete ${{ env.DROPLET_NAME }} --force || true
+
       - name: Create SSH key and publish to DigitalOcean
         id: create_ssh_id
         run: |
@@ -36,9 +40,13 @@ jobs:
           echo ::set-output name=key_id::$DO_SSH_KEY_ID
           echo ::set-output name=ssh_key_private::$SSH_KEY
 
-      - name: Destroy JupyterLab Droplet
+      - name: Collect actual SSH Keys
+        id: actual_keys
         run: |
-          doctl compute droplet delete ${{ env.DROPLET_NAME }} --force || true
+          SSH_KEYS=$(doctl compute ssh-key list --no-header --format ID |  tr '\n' ',')          
+          echo $SSH_KEYS
+          
+          echo ::set-output name=keys_id::"$SSH_KEYS${{ steps.create_ssh_id.outputs.key_id }}"
 
       - name: Create NoSQL Droplet
         id: create_droplet
@@ -47,7 +55,7 @@ jobs:
                 --image ${{ env.DROPLET_IMAGE}} \
                 --region ${{ env.DROPLET_REGION }} \
                 --size ${{ env.DROPLET_SIZE }} \
-                --ssh-keys "${{ steps.create_ssh_id.outputs.key_id }},${{ env.DROPLET_ACTUAL_KEYS }}" \
+                --ssh-keys "${{ steps.actual_keys.outputs.keys_id }}" \
                 --wait \
                 --no-header \
                 --format PublicIPv4)
