@@ -41,7 +41,8 @@ There are two possibilities:
 In order to do a cloud deployment you need:
 
 - Create an account in [DigitalOcean](https://www.digitalocean.com)
-- Create an account in [DuckDns](https://www.duckdns.org/) and setup a personal domain
+- Create an account in [DuckDns](https://www.duckdns.org/)
+- Create a personal domain in DuckDns
 - Create a personal SSH key in your local computer
 - Register your personal SSH key in DigitalOcean
 
@@ -57,13 +58,14 @@ Follow the next steps to do a manual deployment:
 
 ## Automatic deployment
 
-This repo contains a GitHub action that follows the manual steps automatically. To use this automatic deployment you need to fork this repo in your own GitHub account
+This repo contains a GitHub action that follows the manual steps automatically. To use this automatic deployment you need to have an account at [GitHub](https://github.com/) and fork this repo
 
 To configure this action do before executing in
 
 - Generate a new Token (API menu) in DigitalOcean and copy it
+- Copy the DuckDNS's token from DuckDns's main page. No token generation is needed.
 - Add a new repository secret named `DIGITALOCEAN_ACCESS_TOKEN` with the token from DigitalOcean
-- Add a new repository secret named `DUCKDNS_TOKEN` with the token from DuckDns (No token generation is needed, you can copy it from the main page)
+- Add a new repository secret named `DUCKDNS_TOKEN` with the token from DuckDns
 - Edit `.github\workflows\deploy-digitalocean.yml` file to set `DUCKDNS_DOMAIN` variable with the name of your personal DuckDNS's domain.
 
 This action will do:
@@ -93,8 +95,8 @@ ssh -N -L 8001:127.0.0.1:8001 \
              -L 8098:127.0.0.1:8098 \
              -L 8082:127.0.0.1:8082 \
              -L 7687:127.0.0.1:7687 \
-             -L 7687:127.0.0.1:61208 \
-             -L 7687:127.0.0.1:9000 \
+             -L 61208:127.0.0.1:61208 \
+             -L 9000:127.0.0.1:9000 \
             learner@nosql.duckdns.org
 ```
 
