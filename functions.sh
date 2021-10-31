@@ -155,7 +155,7 @@ function secureOpenSsh {
     sed -i 's/^ChallengeResponseAuthentication yes/ChallengeResponseAuthentication no/' /etc/ssh/sshd_config
     sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
     sed -i 's/^UsePAM no/UsePAM yes/' /etc/ssh/sshd_config
-    sed -i 's/^PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
+    #sed -i 's/^PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
 
     /etc/init.d/ssh reload
 }
