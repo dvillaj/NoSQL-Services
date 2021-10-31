@@ -12,55 +12,38 @@ This repo contains all the scripts needed to set up a Ubuntu box with several No
 - Mongodb
 - Neo4j
 - Glances
+- Portainer
 - JupyterLab
 
 Most of the services are powered by Docker and Docker Compose.
 
-## Deployment
+The deployment may be manual or automaic ...
 
-A Ubuntu box has to be previously created you can execute the set up procedure.
+## Manual Deployment
+
+A Ubuntu box has to be previously created before you can execute the set up procedure.
 
 The Ubuntu box's requirements are:
 
  - 20.04 Ubuntu Server with at least 2 Gb of Memory 
- - Remote access to the machine through SSH keys
+ - Remote access to the machine through a RSA SSH key
  - RSA SSH key available in your local machine
 
-There are two possibilities to accomplish this:
+There are two possibilities:
 
  - A box deployed in your local machine with Vagrant & VirtualBox:  https://github.com/dvillaj/NoSQL-box
- - A box deployed with a Cloud Provider like [DigitalOcean](https://www.digitalocean.com), Azure, AWS, etc ... 
+ - A box deployed with a Cloud Provider like [DigitalOcean](https://www.digitalocean.com) or similar (Azure, Google, AWS, etc.) to access it remotely
 
 
-### Create a SSH Key
+### Access to the Box
 
-To create a SSH Key in your local machine view the following link:
+Create a domain in [DuckDns](https://www.duckdns.org/) and update it with the real machine's IP DuckDNS.
 
-https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-2
-
-NOTE: Steps 1 and 2 only
-
-### Video Example
-
-This following video is an example of how to create a Ubuntu box in DigitalOcean cloud provider and setup the remote machine to access all the NoSql services
-
-Before follow the example create a new ssh key, if needed:
+In my case I have created a domain named `nosql` so the full url will be: `nosql.duckdns.org`
 
 ```
-ssh-keygen
-```
 
-https://youtu.be/obbbQvBMTsM
-
-
-## Access to the Box
-
-Replace `<IP>` with the real Machine's IP ...
-
-```
-MACHINE_IP=<IP>
-
-ssh root@$MACHINE_IP
+ssh root@nosql.duckdns.org
 ```
 
 ### Setup the Box
@@ -68,24 +51,26 @@ ssh root@$MACHINE_IP
 Execute the following script to setup the box:
 
 ```
-ssh root@$MACHINE_IP "git clone https://github.com/dvillaj/NoSQL-Services.git /opt/deploy && /opt/deploy/install.sh"
+ssh root@nosql.duckdns.org "git clone https://github.com/dvillaj/NoSQL-Services.git /opt/deploy && /opt/deploy/install.sh"
 ```
 
 ### Secure the Box 
 
-This procedure is recommended if the box is deployed online and have to be executed after all the services has been installed.
+This procedure is recommended if the box is deployed online and must to be executed after all the services has been installed.
 
 
 Execute the following script:
 
 ```
-ssh root@$MACHINE_IP /opt/deploy/securebox.sh
+ssh root@nosql.duckdns.org /opt/deploy/securebox.sh
 ```
 
-After executing this script the SSH Port (22) is the only port allowed.
+After executing this script the SSH Port (22) will be the only port allowed.
 
 
 ## Access to the services from local
+
+We will access all the services from local using a SSH Tunnelling.
 
 Open a terminal in your local machine and execute the following script:
 
@@ -100,7 +85,7 @@ ssh -N -L 8001:127.0.0.1:8001 \
              -L 7687:127.0.0.1:7687 \
              -L 7687:127.0.0.1:61208 \
              -L 7687:127.0.0.1:9000 \
-            learner@$MACHINE_IP
+            learner@nosql.duckdns.org
 ```
 
 ## TroubleShotting
