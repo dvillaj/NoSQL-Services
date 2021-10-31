@@ -1,0 +1,16 @@
+[Unit]
+Description=Glances
+After=syslog.target network.target
+
+[Service]
+Type=simple
+PIDFile=/run/glances.pid
+ExecStart=/bin/bash -c ". /usr/local/bin/start-glances.sh"
+User=${LOCAL_USER}
+Group=${LOCAL_USER}
+WorkingDirectory=/home/${LOCAL_USER}
+Restart=on-abort
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

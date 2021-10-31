@@ -117,6 +117,18 @@ function installJupyterLabExtensions {
 
 }
 
+function serviceGlances {
+    echo "Config Glances Service ..."
+
+    envsubst < $ACTUAL_DIR/resources/system/start-glances.sh.template  > /usr/local/bin/start-glances.sh
+    chmod a+x /usr/local/bin/start-glances.sh
+    envsubst < $ACTUAL_DIR/resources/system/glances.service.template  > /etc/systemd/system/glances.service
+
+    systemctl enable glances.service
+    systemctl daemon-reload
+    systemctl start glances.service
+}
+
 function serviceJupyterLab {
     echo "Config Jupyter Lab ..."
 

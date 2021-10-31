@@ -1,0 +1,3 @@
+source /home/${LOCAL_USER}/venv/bin/activate
+
+glances -w
