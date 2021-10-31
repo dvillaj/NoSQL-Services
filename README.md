@@ -17,17 +17,18 @@ This repo contains all the scripts needed to set up a Ubuntu box with several No
 
 Most of the services are powered by Docker and Docker Compose.
 
-The deployment may be manual or automaic ...
+## Machine Requeriments
 
-## Manual Deployment
+A machine with Ubuntu is needed to deploy all these services.
 
-A Ubuntu box has to be previously created before you can execute the set up procedure.
+The requirements are:
 
-The Ubuntu box's requirements are:
+ - 20.04 Ubuntu Server
+ - At least 2 Gb of Memory
+ - Local RSA SSH key to remote access
 
- - 20.04 Ubuntu Server with at least 2 Gb of Memory 
- - Remote access to the machine through a RSA SSH key
- - RSA SSH key available in your local machine
+
+## Deployment
 
 There are two possibilities:
 
@@ -35,44 +36,50 @@ There are two possibilities:
  - A box deployed with a Cloud Provider like [DigitalOcean](https://www.digitalocean.com) or similar (Azure, Google, AWS, etc.) to access it remotely
 
 
-### Access to the Box
+## Cloud Deployment
 
-Create a domain in [DuckDns](https://www.duckdns.org/) and update it with the real machine's IP DuckDNS.
+In order to do a cloud deployment you need:
 
-In my case I have created a domain named `nosql` so the full url will be: `nosql.duckdns.org`
+- Create an account in [DigitalOcean](https://www.digitalocean.com)
+- Create an account in [DuckDns](https://www.duckdns.org/) and setup a personal domain
 
-```
+## Manual Cloud Deployment
 
-ssh root@nosql.duckdns.org
-```
+Follow the next steps to do a manual deployment:
 
-### Setup the Box
+- Create a RSA key in you local computer
+- Create an droplet in DigitalOcean following the requeriments and configure it with the RSA Key
+- Update DigitalOcean Maniche's IP in the DuckDNS's domain (In my case I have created a domain named `nosql` so the full url will be: `nosql.duckdns.org`)
+- Check you can access to the remote machine with `ssh root@nosql.duckdns.org` from a terminal in you local machine
+- Execute the following script to setup the box: `ssh root@nosql.duckdns.org "git clone https://github.com/dvillaj/NoSQL-Services.git /opt/deploy && /opt/deploy/install.sh`
+- Execute the following script to secure the box: `ssh root@nosql.duckdns.org /opt/deploy/securebox.sh` (a firewall is installed and the only port allowed is the SSH Port)
 
-Execute the following script to setup the box:
+## Automatic deployment
 
-```
-ssh root@nosql.duckdns.org "git clone https://github.com/dvillaj/NoSQL-Services.git /opt/deploy && /opt/deploy/install.sh"
-```
+This repo contains a GitHub action that follows the manual steps automatically. To use this automatic deployment you need to fork this repo in your own GitHub account
 
-### Secure the Box 
+To configure this action do before executing in
 
-This procedure is recommended if the box is deployed online and must to be executed after all the services has been installed.
+- Generate a new Token (API menu) in DigitalOcean and copy it
+- Add a new repository secret named `DIGITALOCEAN_ACCESS_TOKEN` with the token from DigitalOcean
+- Add a new repository secret named `DUCKDNS_TOKEN` with the token from DuckDns (No token generation is needed, you can copy it from the main page)
+- Edit `.github\workflows\deploy-digitalocean.yml` file to set `DUCKDNS_DOMAIN` variable with the name of your personal DuckDNS's domain.
 
+This action will do:
 
-Execute the following script:
+- Check if Droplet exists previosly (It will not be created twice)
+- Create a new 2 GB RAM droplet with Ubuntu 20.04. This droplet can be power up later on DigitalOcean dashboard.
+- Execute the setup procedure and secure it
+- Update DuckDNS domain with the Droplet IP
 
-```
-ssh root@nosql.duckdns.org /opt/deploy/securebox.sh
-```
+This action have to be executed manually
 
-After executing this script the SSH Port (22) will be the only port allowed.
+NOTE: Execute the `Destroy to DigitalOcean Infrastructure` Github's action to destroy the NoSql droplet on DigitalOcean and save money (You will have to do this if you want to execute this action a second time!)
 
 
 ## Access to the services from local
 
-We will access all the services from local using a SSH Tunnelling.
-
-Open a terminal in your local machine and execute the following script:
+We will access all the services from local using a SSH Tunnelling. Open a terminal in your local machine and execute the following script:
 
 ```
 ssh -N -L 8001:127.0.0.1:8001 \
