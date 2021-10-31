@@ -28,7 +28,7 @@ jobs:
 
           if [ -z "$DO_ID" ]
           then
-              echo "NoSql Droplet does exist. Nothing to destroy!"
+              echo "NoSql Droplet does not exist. Nothing to destroy!"
               exit 1
           else
               echo "NoSql Droplet exists. Good :-)"
