@@ -42,13 +42,14 @@ In order to do a cloud deployment you need:
 
 - Create an account in [DigitalOcean](https://www.digitalocean.com)
 - Create an account in [DuckDns](https://www.duckdns.org/) and setup a personal domain
+- Create a personal SSH key in your local computer
+- Register your personal SSH key in DigitalOcean
 
 ## Manual Cloud Deployment
 
 Follow the next steps to do a manual deployment:
 
-- Create a RSA key in you local computer
-- Create an droplet in DigitalOcean following the requeriments and configure it with the RSA Key
+- Create an droplet in DigitalOcean following the requeriments and configure it with your personal RSA Key
 - Update DigitalOcean Maniche's IP in the DuckDNS's domain (In my case I have created a domain named `nosql` so the full url will be: `nosql.duckdns.org`)
 - Check you can access to the remote machine with `ssh root@nosql.duckdns.org` from a terminal in you local machine
 - Execute the following script to setup the box: `ssh root@nosql.duckdns.org "git clone https://github.com/dvillaj/NoSQL-Services.git /opt/deploy && /opt/deploy/install.sh`
@@ -69,10 +70,12 @@ This action will do:
 
 - Check if Droplet exists previosly (It will not be created twice)
 - Create a new 2 GB RAM droplet with Ubuntu 20.04. This droplet can be power up later on DigitalOcean dashboard.
-- Execute the setup procedure and secure it
+- Configure the access to the remote machine with your personal SSH key
+- Execute the setup procedure in the remote machine
+- Secure the remote machine disabling all ports exect 22 (SSH Port)
 - Update DuckDNS domain with the Droplet IP
 
-This action have to be executed manually
+This action have to be trigger manually
 
 NOTE: Execute the `Destroy to DigitalOcean Infrastructure` Github's action to destroy the NoSql droplet on DigitalOcean and save money (You will have to do this if you want to execute this action a second time!)
 
