@@ -5,6 +5,7 @@ on:
 
 env:
   DROPLET_NAME: nosql
+  DROPLET_TAG: nosql
 
 jobs:
   build:
@@ -17,6 +18,24 @@ jobs:
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
+      - name: Check NoSql Droplet
+        id: check_droplet
+        run: |
+          DO_ID=$(doctl compute droplet list \
+                --tag-name ${{ env.DROPLET_TAG }}  \
+                --no-header \
+                --format ID)
+
+          if [ -z "$DO_ID" ]
+          then
+              echo "NoSql Droplet does exist. Nothing to destroy!"
+              exit 1
+          else
+              echo "NoSql Droplet exists. Good :-)"
+          fi
+
+          echo ::set-output name=droplet_id::$DO_ID
+
       - name: Destroy JupyterLab Droplet
         run: |
-          doctl compute droplet delete ${{ env.DROPLET_NAME }} --force
+          doctl compute droplet delete ${{ steps.check_droplet.outputs.droplet_id }} --force
