@@ -98,6 +98,8 @@ ssh -N -L 8001:127.0.0.1:8001 \
              -L 8098:127.0.0.1:8098 \
              -L 8082:127.0.0.1:8082 \
              -L 7687:127.0.0.1:7687 \
+             -L 7687:127.0.0.1:61208 \
+             -L 7687:127.0.0.1:9000 \
             learner@$MACHINE_IP
 ```
 
@@ -136,15 +138,11 @@ sudo restart
 - [Riak Docker Compose](https://github.com/dvillaj/compose-riak)
 - [Riak Docker Image](https://github.com/dvillaj/docker-riak)
 - [Cql Python package](https://github.com/dvillaj/ipython-cql.git)
+- [Portainer Docker Compose](https://github.com/dvillaj/compose-portainer)
 
 ## Jupyter Lab
 
 http://localhost:8001
-
-
-## Glances
-
-http://localhost:61208
 
 
 ## Postgres
@@ -256,3 +254,30 @@ neo4j up -d
 ```
 neo4j down
 ```
+
+
+## Glances
+
+http://localhost:61208
+
+
+## Portainer
+
+### Up
+
+```
+portainer up -d
+```
+
+### Down
+
+```
+portainer down
+```
+
+### Web
+
+http://localhost:9000
+
+User: `admin`  
+Password: `password`
