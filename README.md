@@ -11,6 +11,7 @@ This repo contains all the scripts needed to set up a Ubuntu box with several No
 - Cassandra
 - Mongodb
 - Neo4j
+- Glances
 - JupyterLab
 
 Most of the services are powered by Docker and Docker Compose.
@@ -135,16 +136,18 @@ sudo restart
 - [Riak Docker Compose](https://github.com/dvillaj/compose-riak)
 - [Riak Docker Image](https://github.com/dvillaj/docker-riak)
 - [Cql Python package](https://github.com/dvillaj/ipython-cql.git)
-- 
 
 ## Jupyter Lab
 
 http://localhost:8001
 
 
+## Glances
+
+http://localhost:61208
+
 
 ## Postgres
-
 
 ### Up
 
@@ -216,8 +219,6 @@ cassandra up -d
 ```
 cassandra down
 ```
-
-
 
 ## MongoDb
 

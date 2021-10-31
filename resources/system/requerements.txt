@@ -49,3 +49,6 @@ pprintpp
 # Read Excel from Pandas
 xlrd
 openpyxl
+
+# System Monitorning
+glances
