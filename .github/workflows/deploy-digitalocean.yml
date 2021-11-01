@@ -91,7 +91,7 @@ jobs:
         with:
           username: 'root'
           server: ${{ steps.create_droplet.outputs.public_ip }}
-          ssh_private_key: ${{ steps.create_ssh_id.outputs.ssh_key_private }} 
+          ssh_private_key: "${{ steps.create_ssh_id.outputs.ssh_key_private }}"
           #local_path: './static/*'
           remote_path: '/opt/deploy'
           #args: '-o ConnectTimeout=10'
@@ -100,7 +100,7 @@ jobs:
       #   uses: appleboy/ssh-action@v0.1.2
       #   with:
       #     host: ${{ steps.create_droplet.outputs.public_ip }}
-      #     key: ${{ steps.create_ssh_id.outputs.ssh_key_private }}
+      #     key: "${{ steps.create_ssh_id.outputs.ssh_key_private }}"
       #     username: root
      
       #     script: |
