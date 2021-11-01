@@ -87,15 +87,14 @@ jobs:
         run: |
           sleep 15
 
-      - name: Hi NoSQL
+      - name: Create Deploy Directory
         uses: appleboy/ssh-action@v0.1.2
         with:
           host: ${{ steps.create_droplet.outputs.public_ip }}
           key: "${{ steps.create_ssh_id.outputs.ssh_key_private }}"
           username: root
      
-          script: echo hi
-
+          script: mkdir /opt/deploy
 
       - name: Deploy files
         uses: wlixcc/SFTP-Deploy-Action@v1.0
@@ -105,7 +104,6 @@ jobs:
           ssh_private_key: "${{ steps.create_ssh_id.outputs.ssh_key_private }}"
           local_path: './*'
           remote_path: '/opt/deploy'
-          #args: '-o ConnectTimeout=10'
 
       # - name: Deploy NoSQL assets
       #   uses: appleboy/ssh-action@v0.1.2
