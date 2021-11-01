@@ -84,7 +84,7 @@ jobs:
       # We have to give some time to the droplet for starting the SSH service
       - name: Sleeping ...
         run: |
-        sleep 15
+          sleep 15
 
       - name: Deploy files
         uses: wlixcc/SFTP-Deploy-Action@v1.0
