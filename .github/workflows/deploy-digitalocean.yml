@@ -46,7 +46,6 @@ jobs:
 
           SSH_KEY_PUBLIC=$(cat ~/digitalocean.pub)
           DO_SSH_KEY_ID=$(doctl compute ssh-key create github --verbose --public-key "$SSH_KEY_PUBLIC" --no-header --format ID)
-          echo "KEY ID=$DO_SSH_KEY_ID"
 
           SSH_KEY=$(cat ~/digitalocean)
           SSH_KEY="${SSH_KEY//$'\n'/'%0A'}"
@@ -94,7 +93,8 @@ jobs:
           key: "${{ steps.create_ssh_id.outputs.ssh_key_private }}"
           username: root
      
-          script: mkdir /opt/deploy
+          script: |
+            mkdir /opt/deploy
 
       - name: Deploy files
         uses: wlixcc/SFTP-Deploy-Action@v1.0
@@ -105,17 +105,15 @@ jobs:
           local_path: './*'
           remote_path: '/opt/deploy'
 
-      # - name: Deploy NoSQL assets
-      #   uses: appleboy/ssh-action@v0.1.2
-      #   with:
-      #     host: ${{ steps.create_droplet.outputs.public_ip }}
-      #     key: "${{ steps.create_ssh_id.outputs.ssh_key_private }}"
-      #     username: root
+      - name: Deploy NoSQL assets
+        uses: appleboy/ssh-action@v0.1.2
+        with:
+          host: ${{ steps.create_droplet.outputs.public_ip }}
+          key: "${{ steps.create_ssh_id.outputs.ssh_key_private }}"
+          username: root
      
-      #     script: |
-      #       git clone https://github.com/dvillaj/NoSQL-Services.git /opt/deploy
-            
-      #       /opt/deploy/install.sh
-      #       /opt/deploy/securebox.sh
+          script: |
+            /opt/deploy/install.sh
+            /opt/deploy/securebox.sh
 
-      #       curl https://www.duckdns.org/update/${{ env.DUCKDNS_DOMAIN }}/${{ secrets.DUCKDNS_TOKEN }}
+            
