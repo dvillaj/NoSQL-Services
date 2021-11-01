@@ -76,24 +76,37 @@ jobs:
 
       - name: Destroy SSH Key
         run: |
-          doctl compute ssh-key delete ${{ steps.create_ssh_id.outputs.key_id }} --force         
+          doctl compute ssh-key delete ${{ steps.create_ssh_id.outputs.key_id }} --force  
+          
+      - name: Get latest code
+        uses: actions/checkout@v2                 
 
-        # We have to give some time to the droplet for starting the SSH service
-      - name: Sleeping ...
-        run: |
-          sleep 15
+      #   # We have to give some time to the droplet for starting the SSH service
+      # - name: Sleeping ...
+      #   run: |
+      #     sleep 15
 
-      - name: Deploy NoSQL assets
-        uses: appleboy/ssh-action@v0.1.2
+      - name: Deploy files
+        uses: wlixcc/SFTP-Deploy-Action@v1.0
         with:
-          host: ${{ steps.create_droplet.outputs.public_ip }}
-          key: "${{ steps.create_ssh_id.outputs.ssh_key_private }}"
-          username: root
-     
-          script: |
-            git clone https://github.com/dvillaj/NoSQL-Services.git /opt/deploy
-            
-            /opt/deploy/install.sh
-            /opt/deploy/securebox.sh
+          username: 'root'
+          server: ${{ steps.create_droplet.outputs.public_ip }}
+          ssh_private_key: ${{ steps.create_ssh_id.outputs.ssh_key_private }} 
+          #local_path: './static/*'
+          remote_path: '/opt/deploy'
+          args: '-o ConnectTimeout=10'
 
-            curl https://www.duckdns.org/update/${{ env.DUCKDNS_DOMAIN }}/${{ secrets.DUCKDNS_TOKEN }}
+      # - name: Deploy NoSQL assets
+      #   uses: appleboy/ssh-action@v0.1.2
+      #   with:
+      #     host: ${{ steps.create_droplet.outputs.public_ip }}
+      #     key: ${{ steps.create_ssh_id.outputs.ssh_key_private }}
+      #     username: root
+     
+      #     script: |
+      #       git clone https://github.com/dvillaj/NoSQL-Services.git /opt/deploy
+            
+      #       /opt/deploy/install.sh
+      #       /opt/deploy/securebox.sh
+
+      #       curl https://www.duckdns.org/update/${{ env.DUCKDNS_DOMAIN }}/${{ secrets.DUCKDNS_TOKEN }}
