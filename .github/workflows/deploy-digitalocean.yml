@@ -81,10 +81,10 @@ jobs:
       - name: Get latest code
         uses: actions/checkout@v2                 
 
-      #   # We have to give some time to the droplet for starting the SSH service
-      # - name: Sleeping ...
-      #   run: |
-      #     sleep 15
+      # We have to give some time to the droplet for starting the SSH service
+      - name: Sleeping ...
+        run: |
+        sleep 15
 
       - name: Deploy files
         uses: wlixcc/SFTP-Deploy-Action@v1.0
@@ -94,7 +94,7 @@ jobs:
           ssh_private_key: ${{ steps.create_ssh_id.outputs.ssh_key_private }} 
           #local_path: './static/*'
           remote_path: '/opt/deploy'
-          args: '-o ConnectTimeout=10'
+          #args: '-o ConnectTimeout=10'
 
       # - name: Deploy NoSQL assets
       #   uses: appleboy/ssh-action@v0.1.2
