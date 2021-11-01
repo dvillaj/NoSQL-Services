@@ -12,6 +12,7 @@ env:
   DROPLET_IMAGE: ubuntu-20-04-x64 
   DROPLET_TAG: nosql
 
+  DEPLOY_DIR: /opt/deploy
 jobs:
   build:
 
@@ -94,7 +95,7 @@ jobs:
           username: root
      
           script: |
-            mkdir /opt/deploy
+            mkdir ${{ env.DEPLOY_DIR }}
 
       - name: Deploy files
         uses: wlixcc/SFTP-Deploy-Action@v1.0
@@ -103,7 +104,7 @@ jobs:
           server: ${{ steps.create_droplet.outputs.public_ip }}
           ssh_private_key: "${{ steps.create_ssh_id.outputs.ssh_key_private }}"
           local_path: './*'
-          remote_path: '/opt/deploy'
+          remote_path: '${{ env.DEPLOY_DIR }}'
 
       - name: Deploy NoSQL assets
         uses: appleboy/ssh-action@v0.1.2
@@ -113,7 +114,36 @@ jobs:
           username: root
      
           script: |
-            /opt/deploy/install.sh
-            /opt/deploy/securebox.sh
+            ${{ env.DEPLOY_DIR }}/install.sh
+
+      - name: Secure Box
+        uses: appleboy/ssh-action@v0.1.2
+        with:
+          host: ${{ steps.create_droplet.outputs.public_ip }}
+          key: "${{ steps.create_ssh_id.outputs.ssh_key_private }}"
+          username: root
+     
+          script: |
+            ${{ env.DEPLOY_DIR }}/securebox.sh
+
+      - name: Refresh DuckDNS IP
+        uses: appleboy/ssh-action@v0.1.2
+        with:
+          host: ${{ steps.create_droplet.outputs.public_ip }}
+          key: ${{ steps.create_ssh_id.outputs.ssh_key_private }}
+          username: root
+     
+          script: curl https://www.duckdns.org/update/${{ env.DUCKDNS_DOMAIN }}/${{ secrets.DUCKDNS_TOKEN }}
+
+      - name: Remove public key
+        uses: appleboy/ssh-action@v0.1.2
+        with:
+          host: ${{ steps.create_droplet.outputs.public_ip }}
+          key: ${{ steps.create_ssh_id.outputs.ssh_key_private }}
+          username: root
+     
+          script: |
+            grep -v "${{ steps.create_ssh_id.outputs.ssh_key_public }}" .ssh/authorized_keys > authorized_keys.new
+            mv authorized_keys.new .ssh/authorized_keys               
 
             
