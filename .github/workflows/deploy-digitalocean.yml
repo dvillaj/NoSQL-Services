@@ -46,6 +46,7 @@ jobs:
 
           SSH_KEY_PUBLIC=$(cat ~/digitalocean.pub)
           DO_SSH_KEY_ID=$(doctl compute ssh-key create github --verbose --public-key "$SSH_KEY_PUBLIC" --no-header --format ID)
+          echo "KEY ID=$DO_SSH_KEY_ID"
 
           SSH_KEY=$(cat ~/digitalocean)
           SSH_KEY="${SSH_KEY//$'\n'/'%0A'}"
