@@ -42,7 +42,7 @@ jobs:
       - name: Create SSH key and publish to DigitalOcean
         id: create_ssh_id
         run: |
-          ssh-keygen -N "" -f ~/digitalocean 
+          ssh-keygen -m PEM -N "" -f ~/digitalocean 
 
           SSH_KEY_PUBLIC=$(cat ~/digitalocean.pub)
           DO_SSH_KEY_ID=$(doctl compute ssh-key create github --verbose --public-key "$SSH_KEY_PUBLIC" --no-header --format ID)
@@ -92,7 +92,7 @@ jobs:
           username: 'root'
           server: ${{ steps.create_droplet.outputs.public_ip }}
           ssh_private_key: "${{ steps.create_ssh_id.outputs.ssh_key_private }}"
-          #local_path: './static/*'
+          local_path: './*'
           remote_path: '/opt/deploy'
           #args: '-o ConnectTimeout=10'
 
