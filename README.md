@@ -97,6 +97,7 @@ ssh -N -L 8001:127.0.0.1:8001 \
              -L 7687:127.0.0.1:7687 \
              -L 61208:127.0.0.1:61208 \
              -L 9000:127.0.0.1:9000 \
+             -o "StrictHostKeyChecking no" \
             learner@nosql.duckdns.org
 ```
 
