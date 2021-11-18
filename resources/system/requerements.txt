@@ -6,6 +6,7 @@ jupyterlab-spreadsheet-editor
 lckr-jupyterlab-variableinspector
 jupyter_nbextensions_configurator
 jupyter_contrib_nbextensions
+notebook-as-pdf
 
 # Pandas
 pandas
