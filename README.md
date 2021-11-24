@@ -54,7 +54,7 @@ Follow the next steps to do a manual deployment:
 - Update DigitalOcean Maniche's IP in the DuckDNS's domain (In my case I have created a domain named `nosql` so the full url will be: `nosql.duckdns.org`)
 - Check you can access to the remote machine with `ssh root@nosql.duckdns.org` from a terminal in you local machine
 - Execute the following script to setup the box: `ssh root@nosql.duckdns.org -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking no" "git clone https://github.com/dvillaj/NoSQL-Services.git /opt/deploy && /opt/deploy/install.sh`
-- Execute the following script to secure the box: `ssh root@nosql.duckdns.org /opt/deploy/securebox.sh` (a firewall will be installed and the only port allowed will be the SSH Port)
+- Execute the following script to secure the box: `ssh root@nosql.duckdns.org -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking no" /opt/deploy/securebox.sh` (a firewall will be installed and the only port allowed will be the SSH Port)
 
 ## Automatic deployment
 
