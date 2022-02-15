@@ -133,7 +133,15 @@ jobs:
           key: ${{ steps.create_ssh_id.outputs.ssh_key_private }}
           username: root
      
-          script: curl https://www.duckdns.org/update/${{ env.DUCKDNS_DOMAIN }}/${{ secrets.DUCKDNS_TOKEN }}
+          script: |
+            curl -s -o duckdns.log https://www.duckdns.org/update/${{ env.DUCKDNS_DOMAIN }}/${{ secrets.DUCKDNS_TOKEN }}
+            if grep -R "OK" duckdns.log; then
+              echo "IP updated"
+            else
+              echo "IP update FAILED"
+              cat duckdns.log
+              exit 1
+            fi
 
       - name: Remove public key
         uses: appleboy/ssh-action@v0.1.2
