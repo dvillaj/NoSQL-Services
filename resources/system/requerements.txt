@@ -7,6 +7,9 @@ lckr-jupyterlab-variableinspector
 jupyter_nbextensions_configurator
 jupyter_contrib_nbextensions
 
+# ~/.jupyter/lab/user-settings/@jupyterlab
+jupyterlab-code-snippets
+
 # Pandas
 pandas
 matplotlib
