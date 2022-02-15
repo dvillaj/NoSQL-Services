@@ -53,8 +53,8 @@ Follow the next steps to do a manual deployment:
 - Create an droplet in DigitalOcean following the requeriments and configure it with your personal RSA Key
 - Update DigitalOcean Maniche's IP in the DuckDNS's domain (In my case I have created a domain named `nosql` so the full url will be: `nosql.duckdns.org`)
 - Check you can access to the remote machine with `ssh root@nosql.duckdns.org` from a terminal in you local machine
-- Execute the following script to setup the box: `ssh root@nosql.duckdns.org "git clone https://github.com/dvillaj/NoSQL-Services.git /opt/deploy && /opt/deploy/install.sh`
-- Execute the following script to secure the box: `ssh root@nosql.duckdns.org /opt/deploy/securebox.sh` (a firewall is installed and the only port allowed is the SSH Port)
+- Execute the following script to setup the box: `ssh root@nosql.duckdns.org -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking no" "git clone https://github.com/dvillaj/NoSQL-Services.git /opt/deploy && /opt/deploy/install.sh`
+- Execute the following script to secure the box: `ssh root@nosql.duckdns.org -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking no" /opt/deploy/securebox.sh` (a firewall will be installed and the only port allowed will be the SSH Port)
 
 ## Automatic deployment
 
@@ -98,6 +98,7 @@ ssh -N -L 8001:127.0.0.1:8001 \
              -L 61208:127.0.0.1:61208 \
              -L 9000:127.0.0.1:9000 \
              -o "StrictHostKeyChecking no" \
+             -o "UserKnownHostsFile=/dev/null" \
             learner@nosql.duckdns.org
 ```
 
