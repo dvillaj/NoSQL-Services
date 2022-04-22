@@ -89,6 +89,8 @@ function installPythonPackages_LocalUser {
     virtualenv ~/venv
     source ~/venv/bin/activate
 
+    git config --global url."https://".insteadOf git://
+
     echo "Installing python packages from requirements.txt ..."
     pip3 install -U pip setuptools
     pip3 install --no-cache-dir -r $ACTUAL_DIR/resources/system/requirements.txt
