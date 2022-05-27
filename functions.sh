@@ -63,7 +63,9 @@ function addLocalUser {
 function installSystemPackages {
     echo "Installing system packages from packages.conf  ..."
 
-    killall apt apt-get || true
+    #killall apt apt-get || true
+
+    ps aux | grep -i apt 
 
     apt -qq update
     apt install -y $(grep -vE "^\s*#" $ACTUAL_DIR/resources/system/packages.conf  | tr "\n" " ")
