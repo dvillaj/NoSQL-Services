@@ -65,7 +65,15 @@ function installSystemPackages {
 
     #killall apt apt-get || true
 
-    ps aux | grep -i apt 
+    ps aux | grep -i apt
+    
+    #processId=$(ps -ef | grep 'apt-get -qq update' | grep -v 'grep' | awk '{ printf $2 }')
+    processId=$(ps -ef | grep 'apt-get -qq update' | head 1 | awk '{ printf $2 }')
+    echo $processId
+
+    sleep 60
+    
+    ps aux | grep -i apt
 
     apt -qq update
     apt install -y $(grep -vE "^\s*#" $ACTUAL_DIR/resources/system/packages.conf  | tr "\n" " ")
