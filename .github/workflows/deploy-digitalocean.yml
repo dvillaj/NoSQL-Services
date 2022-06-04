@@ -112,6 +112,7 @@ jobs:
           host: ${{ steps.create_droplet.outputs.public_ip }}
           key: "${{ steps.create_ssh_id.outputs.ssh_key_private }}"
           username: root
+          command_timeout: 200m
      
           script: |
             ${{ env.DEPLOY_DIR }}/install.sh
