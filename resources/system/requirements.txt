@@ -11,8 +11,8 @@ jupyter_contrib_nbextensions
 jupyterlab-code-snippets
 
 # Pandas
-pandas
-matplotlib
+pandas==1.4.2
+matplotlib==3.5.2
 Faker
 
 # Postgres
