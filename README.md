@@ -50,11 +50,26 @@ In order to do a cloud deployment you need:
 
 Follow the next steps to do a manual deployment:
 
+- Create a Personal RSA Key
 - Create an droplet in DigitalOcean following the requeriments and configure it with your personal RSA Key
 - Update DigitalOcean Maniche's IP in the DuckDNS's domain (In my case I have created a domain named `nosql` so the full url will be: `nosql.duckdns.org`)
 - Check you can access to the remote machine with `ssh root@nosql.duckdns.org` from a terminal in you local machine
 - Execute the following script to setup the box: `ssh root@nosql.duckdns.org -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking no" "git clone https://github.com/dvillaj/NoSQL-Services.git /opt/deploy && /opt/deploy/install.sh`
 - Execute the following script to secure the box: `ssh root@nosql.duckdns.org -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking no" /opt/deploy/securebox.sh` (a firewall will be installed and the only port allowed will be the SSH Port)
+
+
+### Video Example
+
+This following video is an example of how to create a Ubuntu box in DigitalOcean cloud provider and setup the remote machine to access all the NoSql services
+
+Before follow the example create a new ssh key, if needed:
+
+```
+ssh-keygen
+```
+
+https://youtu.be/obbbQvBMTsM
+
 
 ## Automatic deployment
 
@@ -128,7 +143,7 @@ sudo restart
 
 # Services
 
-## Dependencies 
+## Dependencies
 
 - [Postgres Docker Compose](https://github.com/dvillaj/compose-postgres)
 - [Cassandra Docker Compose](https://github.com/dvillaj/compose-cassandra)
