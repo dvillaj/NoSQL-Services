@@ -3,7 +3,7 @@
 function checkVersion {
     echo "Checking Linux Version ..."
 
-    grep 'Focal Fossa' /etc/os-release > /dev/null
+    grep '20.04' /etc/os-release > /dev/null
     if [ $? -eq 0 ]
     then
         echo "All good :-)"
@@ -63,8 +63,8 @@ function addLocalUser {
 function installSystemPackages {
     echo "Installing system packages from packages.conf  ..."
 
-    apt -qq update || true
-    sleep 120
+    apt -qq update # || true
+    # sleep 120
     
     apt install -y $(grep -vE "^\s*#" $ACTUAL_DIR/resources/system/packages.conf  | tr "\n" " ")
 }
