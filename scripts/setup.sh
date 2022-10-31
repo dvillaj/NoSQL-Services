@@ -12,11 +12,6 @@ git clone https://github.com/dvillaj/compose-mongodb.git /opt/compose/compose-mo
 git clone https://github.com/dvillaj/compose-neo4j /opt/compose/compose-neo4j
 git clone https://github.com/dvillaj/compose-portainer /opt/compose/compose-portainer
 
-# Code Snippets
-rm -rf /home/learner/.local/share/jupyter/metadata/code-snippets
-mkdir -p /home/learner/.local/share/jupyter/metadata
-git clone https://github.com/dvillaj/pandas-code-snippets.git /home/learner/.local/share/jupyter/metadata/code-snippets
-
 if [ -f ~/notebooks/.install ]; then
     docker pull postgres:12.2
     docker pull dpage/pgadmin4:4.20
