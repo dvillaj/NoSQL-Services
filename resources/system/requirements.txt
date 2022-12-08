@@ -1,6 +1,6 @@
 # jupyterlab
-jupyterlab==3.5.0
-jupyterlab-git
+jupyterlab
+# jupyterlab-git # Failed Install
 jupyterlab-drawio
 jupyterlab-spreadsheet-editor
 lckr-jupyterlab-variableinspector
