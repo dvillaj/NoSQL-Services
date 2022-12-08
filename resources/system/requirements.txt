@@ -1,14 +1,11 @@
 # jupyterlab
-jupyterlab
+jupyterlab==3.5.0
 jupyterlab-git
 jupyterlab-drawio
 jupyterlab-spreadsheet-editor
 lckr-jupyterlab-variableinspector
 jupyter_nbextensions_configurator
 jupyter_contrib_nbextensions
-
-# ~/.jupyter/lab/user-settings/@jupyterlab
-jupyterlab-code-snippets
 
 # Pandas
 pandas==1.4.2

@@ -12,7 +12,6 @@ git clone https://github.com/dvillaj/compose-mongodb.git /opt/compose/compose-mo
 git clone https://github.com/dvillaj/compose-neo4j /opt/compose/compose-neo4j
 git clone https://github.com/dvillaj/compose-portainer /opt/compose/compose-portainer
 
-
 if [ -f ~/notebooks/.install ]; then
     docker pull postgres:12.2
     docker pull dpage/pgadmin4:4.20
