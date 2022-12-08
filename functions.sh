@@ -66,6 +66,12 @@ function installSystemPackages {
     apt -qq update || true
     sleep 120
     
+    apt -qq update || true
+    sleep 120
+    
+    apt -qq update || true
+    sleep 120
+    
     apt install -y $(grep -vE "^\s*#" $ACTUAL_DIR/resources/system/packages.conf  | tr "\n" " ")
 }
 
