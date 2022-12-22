@@ -1,6 +1,6 @@
 # jupyterlab
 jupyterlab
-# jupyterlab-git # Failed Install
+jupyterlab-git
 jupyterlab-drawio
 jupyterlab-spreadsheet-editor
 lckr-jupyterlab-variableinspector
