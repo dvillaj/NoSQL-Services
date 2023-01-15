@@ -13,12 +13,20 @@ git clone https://github.com/dvillaj/compose-neo4j /opt/compose/compose-neo4j
 git clone https://github.com/dvillaj/compose-portainer /opt/compose/compose-portainer
 
 
+# Kill live containers
+if [ -s "$(docker ps -q)" ]; then
+    docker kill $(docker ps -q)
+fi
+
 # Remove containers
-docker kill $(docker ps -q)
-docker rm -f $(docker ps -a -q)
+if [ -s "$(docker ps -a -q)" ]; then
+    docker rm -f $(docker ps -a -q)
+fi
 
 # Remove volumnes
-docker volume rm $(docker volume ls -q)
+if [ -s "$(docker volume ls -q)" ]; then
+    docker volume rm $(docker volume ls -q)
+fi
 
 # Pull Images
 docker-compose -f /opt/compose/compose-postgres/docker-compose.yml pull
