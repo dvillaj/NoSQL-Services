@@ -12,11 +12,18 @@ git clone https://github.com/dvillaj/compose-mongodb.git /opt/compose/compose-mo
 git clone https://github.com/dvillaj/compose-neo4j /opt/compose/compose-neo4j
 git clone https://github.com/dvillaj/compose-portainer /opt/compose/compose-portainer
 
-if [ -f ~/notebooks/.install ]; then
-    docker-compose -f /opt/compose/compose-postgres/docker-compose.yml pull
-    docker-compose -f /opt/compose/compose-riak/docker-compose.yml pull
-    docker-compose -f /opt/compose/compose-cassandra/docker-compose.yml pull
-    docker-compose -f /opt/compose/compose-mongodb/docker-compose.yml pull
-    docker-compose -f /opt/compose/compose-neo4j/docker-compose.yml pull
-    docker-compose -f /opt/compose/compose-portainer/docker-compose.yml pull
-fi
+
+# Remove containers
+docker kill $(docker ps -q)
+docker rm -f $(docker ps -a -q)
+
+# Remove volumnes
+docker volume rm $(docker volume ls -q)
+
+# Pull Images
+docker-compose -f /opt/compose/compose-postgres/docker-compose.yml pull
+docker-compose -f /opt/compose/compose-riak/docker-compose.yml pull
+docker-compose -f /opt/compose/compose-cassandra/docker-compose.yml pull
+docker-compose -f /opt/compose/compose-mongodb/docker-compose.yml pull
+docker-compose -f /opt/compose/compose-neo4j/docker-compose.yml pull
+docker-compose -f /opt/compose/compose-portainer/docker-compose.yml pull
