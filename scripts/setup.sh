@@ -15,16 +15,19 @@ git clone https://github.com/dvillaj/compose-portainer /opt/compose/compose-port
 
 # Kill live containers
 if [ -s "$(docker ps -q)" ]; then
+    echo "Killing Containers ..."
     docker kill $(docker ps -q)
 fi
 
 # Remove containers
 if [ -s "$(docker ps -a -q)" ]; then
+    echo "Removing Containers ..."
     docker rm -f $(docker ps -a -q)
 fi
 
 # Remove volumnes
 if [ -s "$(docker volume ls -q)" ]; then
+    echo "Removing Volumes ..."
     docker volume rm $(docker volume ls -q)
 fi
 
