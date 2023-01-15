@@ -1,8 +1,10 @@
 #!/bin/bash
 
+# Clone Main Repo
 rm -rf ~/notebooks/Taller_BBDD
 git clone https://github.com/dvillaj/Taller_BBDD.git ~/notebooks/Taller_BBDD
 
+# Clone Docker Compose Repos
 rm -rf /opt/compose/compose*
 
 git clone https://github.com/dvillaj/compose-postgres.git /opt/compose/compose-postgres 
@@ -12,13 +14,23 @@ git clone https://github.com/dvillaj/compose-mongodb.git /opt/compose/compose-mo
 git clone https://github.com/dvillaj/compose-neo4j /opt/compose/compose-neo4j
 git clone https://github.com/dvillaj/compose-portainer /opt/compose/compose-portainer
 
+# Kill live containers
+if [ $(docker ps -q | wc -l ) -gt 0 ]; then
+    echo "Killing live containers"
+    docker ps -q | xargs docker stop
+fi
 
 # Remove containers
-docker kill $(docker ps -q)
-docker rm -f $(docker ps -a -q)
+if [ $(docker ps -a -q | wc -l ) -gt 0 ]; then
+    echo "Removing containers"
+    docker ps -a -q | xargs docker rm
+fi
 
 # Remove volumnes
-docker volume rm $(docker volume ls -q)
+if [ $(docker volume ls -q | wc -l ) -gt 0 ]; then
+    echo "Removing volumes"
+    docker volume ls -q | xargs docker volume rm
+fi
 
 # Pull Images
 docker-compose -f /opt/compose/compose-postgres/docker-compose.yml pull
