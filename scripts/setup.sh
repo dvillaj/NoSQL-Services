@@ -1,8 +1,10 @@
 #!/bin/bash
 
+# Clone Main Repo
 rm -rf ~/notebooks/Taller_BBDD
 git clone https://github.com/dvillaj/Taller_BBDD.git ~/notebooks/Taller_BBDD
 
+# Clone Docker Compose Repos
 rm -rf /opt/compose/compose*
 
 git clone https://github.com/dvillaj/compose-postgres.git /opt/compose/compose-postgres 
@@ -11,9 +13,6 @@ git clone https://github.com/dvillaj/compose-cassandra /opt/compose/compose-cass
 git clone https://github.com/dvillaj/compose-mongodb.git /opt/compose/compose-mongodb
 git clone https://github.com/dvillaj/compose-neo4j /opt/compose/compose-neo4j
 git clone https://github.com/dvillaj/compose-portainer /opt/compose/compose-portainer
-
-
-docker ps | xargs kill
 
 # Kill live containers
 if [ $(docker ps -q | wc -l ) -gt 0 ]; then
